@@ -7,8 +7,6 @@ Alexander Schulz and Christian T. Thiel
 Institute of Human Genetics, Universitätsklinikum Erlangen, Friedrich-Alexander-Universität Erlangen-Nürnberg, 91054 Erlangen, Germany  
 Correspondence: Christian.Thiel@uk-erlangen.de
 
-Every table below is generated from the result tables in `results/` by `06_manuscript/build_supplement.py`, so none of it can disagree with a figure or with the main text.
-
 ---
 
 ## Contents
@@ -33,7 +31,7 @@ Supplemental note 2. Analytical choices, and what was not corrected for.
 
 ## Table S1. Breadth against Mendelian skeletal disease
 
-Proportion of genes carrying an annotation in each curation, by breadth of action. Intervals are 95% Jeffreys intervals. This is the source of Figure 1B.
+Proportion of genes carrying an annotation in each curation, by breadth of action. Intervals are 95% Jeffreys intervals. Underlies Figure 1B.
 
 | Curation | Breadth | Genes | Annotated | Annotated (%) | 95% CI (%) |
 |---|---|---|---|---|---|
@@ -61,7 +59,7 @@ Proportion of genes carrying an annotation in each curation, by breadth of actio
 
 ## Table S2. Sensitivity to the Z threshold
 
-The shared layer redefined at each threshold, against every gene outside it. Haldane-corrected odds ratios with Wald intervals. Source of Figure 1C.
+The shared layer redefined at each threshold, against every gene outside it. Haldane-corrected odds ratios with Wald intervals. Underlies Figure 1C.
 
 | Z threshold | Curation | Shared layer (n) | OR (95% CI) | P |
 |---|---|---|---|---|
@@ -83,7 +81,7 @@ The shared layer redefined at each threshold, against every gene outside it. Hal
 
 ## Table S3. Sensitivity to linkage: the locus sweep
 
-Consecutive genes on a chromosome within the merge distance are collapsed into one locus, which is called shared-layer or Mendelian if any of its genes is. Source of Figure 1D.
+Consecutive genes on a chromosome within the merge distance are collapsed into one locus, which is called shared-layer or Mendelian if any of its genes is. Underlies Figure 1D.
 
 | Merge distance (kb) | Loci | Shared-layer loci | OR (95% CI) | P |
 |---|---|---|---|---|
@@ -95,7 +93,7 @@ Consecutive genes on a chromosome within the merge distance are collapsed into o
 
 ## Table S4. Phenotype breadth by breadth of action
 
-Body regions affected by the Mendelian phenotype, for the 2,789 genes carrying a skeletal condition. Generalized means four or more of the six regions. Source of Figure 2A.
+Body regions affected by the Mendelian phenotype, for the 2,789 genes carrying a skeletal condition. Generalized means four or more of the six regions. Underlies Figure 2A.
 
 | Breadth | Genes | Regions affected (mean ± SEM) | Generalized (%) |
 |---|---|---|---|
@@ -111,7 +109,7 @@ Across strata: 2.72 regions at breadth 0–1 against 3.47 at breadth 5–6 (Mann
 
 ## Table S5. The cross-organ control
 
-Ordinary least squares of phenotype breadth on breadth of action, adjusted for the logarithm of the gene's total ontology term count. Source of Figure 2B.
+Ordinary least squares of phenotype breadth on breadth of action, adjusted for the logarithm of the gene's total ontology term count. Underlies Figure 2B.
 
 | Predictor | Outcome | Genes | β | SE | t | P |
 |---|---|---|---|---|---|---|
@@ -122,7 +120,7 @@ Ordinary least squares of phenotype breadth on breadth of action, adjusted for t
 
 ## Table S6. Genetic coherence of the measurement sites
 
-Mean and range of the pairwise genetic correlation between the measurement sites of each organ. A shared layer can only exist where the sites share genetic architecture. Source of Figure 2C.
+Mean and range of the pairwise genetic correlation between the measurement sites of each organ. A shared layer can only exist where the sites share genetic architecture. Underlies Figure 2C.
 
 | Measurement set | Sites | Mean r | Range | Shared layer detected |
 |---|---|---|---|---|
@@ -131,7 +129,7 @@ Mean and range of the pairwise genetic correlation between the measurement sites
 
 ## Table S7. Replication in GEFOS
 
-Median gene-level Z in GEFOS, which shares no participants with UK Biobank, as a function of breadth defined in UK Biobank. Source of Figure 3A.
+Median gene-level Z in GEFOS, which shares no participants with UK Biobank, as a function of breadth defined in UK Biobank. Underlies Figure 3A.
 
 | GEFOS site | Breadth | Median Z |
 |---|---|---|
@@ -169,7 +167,7 @@ The main text quotes the companion contrast in Table S9, which excludes the site
 
 ## Table S8. Fracture risk by breadth of action
 
-Fracture summary statistics from an osteoporosis meta-analysis of 53,184 cases and 373,611 controls. Source of Figure 3B.
+Fracture summary statistics from an osteoporosis meta-analysis of 53,184 cases and 373,611 controls. Underlies Figure 3B.
 
 | Breadth | Genes | Median Z | Z > 2 (%) | Z > 4 (%) |
 |---|---|---|---|---|
@@ -183,7 +181,7 @@ Fracture summary statistics from an osteoporosis meta-analysis of 53,184 cases a
 
 ## Table S9. The two layers across the endpoints
 
-P values are against the 'all other genes' row of the same endpoint. Source of Figure 3C.
+P values are against the 'all other genes' row of the same endpoint. Underlies Figure 3C.
 
 | Endpoint | Layer | Genes | Median Z | P vs all other genes |
 |---|---|---|---|---|
@@ -236,7 +234,7 @@ Gene Ontology biological process terms, non-electronic evidence codes only, agai
 
 ## Table S12. Regulatory density against a length-matched null
 
-Open-chromatin peaks in human fetal limb tissue within 100 kb of each gene, per regulatory element, against 5,000 resamples matched on the decile of log gene length. Source of Figure 4B.
+Open-chromatin peaks in human fetal limb tissue within 100 kb of each gene, per regulatory element, against 5,000 resamples matched on the decile of log gene length. Underlies Figure 4B.
 
 | Layer | Genes | Observed | Length-matched expectation ± SD | Z | P |
 |---|---|---|---|---|---|
@@ -245,7 +243,7 @@ Open-chromatin peaks in human fetal limb tissue within 100 kb of each gene, per 
 
 ## Table S13. The 103 shared-layer genes
 
-Every gene reaching Z > 2 at all six skeletal sites, ordered by its fracture-risk statistic. The paper reports breadth as a continuous property; this list is an illustration, not a deliverable, because redefining the layer in the replication cohort recovers only about 19% of it. Source of Figure 4C.
+Every gene reaching Z > 2 at all six skeletal sites, ordered by its fracture-risk statistic. Breadth is reported throughout as a continuous property of a gene; this list is given for illustration, because redefining the layer in the replication cohort recovers only about 19% of it. Underlies Figure 4C.
 
 | Gene | Fracture Z | Heel BMD Z | GEFOS femoral neck Z | Mendelian skeletal disease | PanelApp green |
 |---|---|---|---|---|---|
@@ -375,9 +373,9 @@ Figure 1B is a third view again: it is expressed relative to genes of breadth ze
 
 **Sample sizes in the replication cohort.** The published GEFOS files carry no per-variant sample size, which the gene-level method requires. N was estimated from standard errors and effect-allele frequencies as N = median[1 / (2f(1 − f)se²)] over variants with 0.1 < f < 0.9. A misestimated N rescales every gene of that trait by a constant and therefore cannot change the ranking of genes within a trait, which is what every replication statement here rests on.
 
-**The annotation window.** Genes were annotated with a 35 kb upstream and 10 kb downstream window, the conventional choice. The window is a single setting in the companion repository (`00_setup/config.py`), and the pipeline accepts an override so that the analysis can be repeated at 10/10 kb.
+**The annotation window.** Genes were annotated with a 35 kb upstream and 10 kb downstream window, the conventional choice. It is a single setting in the analysis code, which accepts an override so that the whole analysis can be repeated at 10/10 kb.
 
-**Confounder controls.** Gene length, research intensity and constraint are addressed in the main text. The matched-null resampling behind them is computed by `04_analysis/04_confounders.py` in the companion repository, which writes `results/confounder_matched_nulls.tsv` and `results/confounder_models.tsv`.
+**Confounder controls.** Gene length, research intensity and constraint are addressed in the main text. The matched-null resampling behind them, and the full tables it produces, are part of the analysis code released with this paper.
 
-**Software.** Gene-level statistics were computed with MAGMA v1.10. All other analysis used Python 3.12 with NumPy, pandas, SciPy and statsmodels; the pinned versions are in `environment.yml` in the companion repository.
+**Software.** Gene-level statistics were computed with MAGMA v1.10. All other analysis used Python 3.12 with NumPy, pandas, SciPy and statsmodels, at the versions pinned in the released analysis code.
 

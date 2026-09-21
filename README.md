@@ -128,6 +128,7 @@ and no step that has to be run twice.
   05_replication_gefos.py      claim 4a, independent cohort
   06_clinical_endpoints.py     claim 4b, fracture and the other endpoints
   07_pathways_and_axis.py      mechanism: Wnt/ossification, regulatory density
+  07b_recheck_regulatory_density.py   Figure 4B from GSE252289, no pipeline
 
 05_figures/        the four figures, the graphical abstract, and two modules
   style.py                     colours, sizes, export, and the layout guards

@@ -50,9 +50,6 @@ def main() -> int:
         "Friedrich-Alexander-Universität Erlangen-Nürnberg, 91054 Erlangen, "
         "Germany  \n"
         "Correspondence: Christian.Thiel@uk-erlangen.de\n")
-    add("Every table below is generated from the result tables in `results/` by "
-        "`06_manuscript/build_supplement.py`, so none of it can disagree with a "
-        "figure or with the main text.\n")
     add("---\n")
 
     add("## Contents\n")
@@ -80,8 +77,8 @@ def main() -> int:
     d["pct"] = (d.fraction * 100).map("{:.1f}".format)
     d["ci"] = [f"{a*100:.1f}–{b*100:.1f}" for a, b in zip(d.ci_low, d.ci_high)]
     add("## Table S1. Breadth against Mendelian skeletal disease\n")
-    add("Proportion of genes carrying an annotation in each curation, by breadth "
-        "of action. Intervals are 95% Jeffreys intervals. This is the source of "
+    add("Proportion of genes carrying an annotation in each curation, by "
+        "breadth of action. Intervals are 95% Jeffreys intervals. Underlies "
         "Figure 1B.\n")
     add(table(d, {"source": "Curation", "breadth": "Breadth", "n_genes": "Genes",
                   "n_positive": "Annotated", "pct": "Annotated (%)",
@@ -94,9 +91,9 @@ def main() -> int:
                   for o, a, b in zip(d.odds_ratio, d.ci_low, d.ci_high)]
     d["pp"] = d.p.map(fmt_p)
     add("## Table S2. Sensitivity to the Z threshold\n")
-    add("The shared layer redefined at each threshold, against every gene outside "
-        "it. Haldane-corrected odds ratios with Wald intervals. Source of "
-        "Figure 1C.\n")
+    add("The shared layer redefined at each threshold, against every gene "
+        "outside it. Haldane-corrected odds ratios with Wald intervals. "
+        "Underlies Figure 1C.\n")
     add(table(d, {"threshold": "Z threshold", "source": "Curation",
                   "n_core": "Shared layer (n)", "or_ci": "OR (95% CI)",
                   "pp": "P"}))
@@ -110,7 +107,7 @@ def main() -> int:
     add("## Table S3. Sensitivity to linkage: the locus sweep\n")
     add("Consecutive genes on a chromosome within the merge distance are collapsed "
         "into one locus, which is called shared-layer or Mendelian if any of its "
-        "genes is. Source of Figure 1D.\n")
+        "genes is. Underlies Figure 1D.\n")
     add(table(d, {"merge_distance_kb": "Merge distance (kb)", "n_loci": "Loci",
                   "n_core_loci": "Shared-layer loci", "or_ci": "OR (95% CI)",
                   "pp": "P"}))
@@ -125,7 +122,7 @@ def main() -> int:
     add("## Table S4. Phenotype breadth by breadth of action\n")
     add("Body regions affected by the Mendelian phenotype, for the 2,789 genes "
         "carrying a skeletal condition. Generalized means four or more of the six "
-        "regions. Source of Figure 2A.\n")
+        "regions. Underlies Figure 2A.\n")
     add(table(d, {"breadth": "Breadth", "n_genes": "Genes",
                   "m": "Regions affected (mean ± SEM)",
                   "g": "Generalized (%)"}))
@@ -148,7 +145,7 @@ def main() -> int:
     add("## Table S5. The cross-organ control\n")
     add("Ordinary least squares of phenotype breadth on breadth of action, "
         "adjusted for the logarithm of the gene's total ontology term count. "
-        "Source of Figure 2B.\n")
+        "Underlies Figure 2B.\n")
     add(table(d, {"predictor": "Predictor", "outcome": "Outcome", "n": "Genes",
                   "b": "β", "se2": "SE", "t2": "t", "pp": "P"}))
     add("")
@@ -160,7 +157,7 @@ def main() -> int:
     add("## Table S6. Genetic coherence of the measurement sites\n")
     add("Mean and range of the pairwise genetic correlation between the "
         "measurement sites of each organ. A shared layer can only exist where the "
-        "sites share genetic architecture. Source of Figure 2C.\n")
+        "sites share genetic architecture. Underlies Figure 2C.\n")
     add(table(d, {"dataset": "Measurement set", "n_traits": "Sites",
                   "r": "Mean r", "rng": "Range",
                   "shared_layer": "Shared layer detected"}))
@@ -171,7 +168,7 @@ def main() -> int:
     d["z"] = d.median_z.map("{:.3f}".format)
     add("## Table S7. Replication in GEFOS\n")
     add("Median gene-level Z in GEFOS, which shares no participants with UK "
-        "Biobank, as a function of breadth defined in UK Biobank. Source of "
+        "Biobank, as a function of breadth defined in UK Biobank. Underlies "
         "Figure 3A.\n")
     add(table(d, {"site": "GEFOS site", "breadth": "Breadth", "z": "Median Z"}))
     s = read("fig3a_gefos_stats.csv").copy()
@@ -193,7 +190,7 @@ def main() -> int:
     d["g4"] = (d.frac_z_gt4 * 100).map("{:.1f}".format)
     add("## Table S8. Fracture risk by breadth of action\n")
     add("Fracture summary statistics from an osteoporosis meta-analysis of 53,184 "
-        "cases and 373,611 controls. Source of Figure 3B.\n")
+        "cases and 373,611 controls. Underlies Figure 3B.\n")
     add(table(d, {"breadth": "Breadth", "n_genes": "Genes", "z": "Median Z",
                   "g2": "Z > 2 (%)", "g4": "Z > 4 (%)"}))
     add("")
@@ -204,7 +201,7 @@ def main() -> int:
     d["pp"] = d.p_vs_rest.map(fmt_p)
     add("## Table S9. The two layers across the endpoints\n")
     add("P values are against the 'all other genes' row of the same endpoint. "
-        "Source of Figure 3C.\n")
+        "Underlies Figure 3C.\n")
     add(table(d, {"endpoint": "Endpoint", "layer": "Layer", "n_genes": "Genes",
                   "z": "Median Z", "pp": "P vs all other genes"}))
     add("")
@@ -248,7 +245,7 @@ def main() -> int:
     add("## Table S12. Regulatory density against a length-matched null\n")
     add("Open-chromatin peaks in human fetal limb tissue within 100 kb of each "
         "gene, per regulatory element, against 5,000 resamples matched on the "
-        "decile of log gene length. Source of Figure 4B.\n")
+        "decile of log gene length. Underlies Figure 4B.\n")
     add(table(d, {"layer": "Layer", "n_genes": "Genes", "obs": "Observed",
                   "exp": "Length-matched expectation ± SD", "z2": "Z", "pp": "P"}))
     add("")
@@ -262,10 +259,10 @@ def main() -> int:
         d[c] = d[c].map("{:.2f}".format)
     add("## Table S13. The 103 shared-layer genes\n")
     add("Every gene reaching Z > 2 at all six skeletal sites, ordered by its "
-        "fracture-risk statistic. The paper reports breadth as a continuous "
-        "property; this list is an illustration, not a deliverable, because "
+        "fracture-risk statistic. Breadth is reported throughout as a continuous "
+        "property of a gene; this list is given for illustration, because "
         "redefining the layer in the replication cohort recovers only about 19% "
-        "of it. Source of Figure 4C.\n")
+        "of it. Underlies Figure 4C.\n")
     add(table(d, {"gene": "Gene", "FRAK": "Fracture Z", "HEEL": "Heel BMD Z",
                   "gefos_fn_z": "GEFOS femoral neck Z",
                   "men": "Mendelian skeletal disease", "pan": "PanelApp green"}))
@@ -316,20 +313,17 @@ def main() -> int:
         "misestimated N rescales every gene of that trait by a constant and "
         "therefore cannot change the ranking of genes within a trait, which is "
         "what every replication statement here rests on.\n")
-    add("**The annotation window.** Genes were annotated with a 35 kb upstream and "
-        "10 kb downstream window, the conventional choice. The window is a single "
-        "setting in the companion repository (`00_setup/config.py`), and the "
-        "pipeline accepts an override so that the analysis can be repeated at "
-        "10/10 kb.\n")
-    add("**Confounder controls.** Gene length, research intensity and constraint "
-        "are addressed in the main text. The matched-null resampling behind them "
-        "is computed by `04_analysis/04_confounders.py` in the companion "
-        "repository, which writes `results/confounder_matched_nulls.tsv` and "
-        "`results/confounder_models.tsv`.\n")
+    add("**The annotation window.** Genes were annotated with a 35 kb upstream "
+        "and 10 kb downstream window, the conventional choice. It is a single "
+        "setting in the analysis code, which accepts an override so that the "
+        "whole analysis can be repeated at 10/10 kb.\n")
+    add("**Confounder controls.** Gene length, research intensity and "
+        "constraint are addressed in the main text. The matched-null "
+        "resampling behind them, and the full tables it produces, are part "
+        "of the analysis code released with this paper.\n")
     add("**Software.** Gene-level statistics were computed with MAGMA v1.10. "
         "All other analysis used Python 3.12 with NumPy, pandas, SciPy and "
-        "statsmodels; the pinned versions are in `environment.yml` in the "
-        "companion repository.\n")
+        "statsmodels, at the versions pinned in the released analysis code.\n")
 
     OUT.write_text("\n".join(parts) + "\n", encoding="utf-8")
     n_tables = sum(1 for p in parts if p.startswith("## Table S"))

@@ -294,10 +294,37 @@ femur, tibia, humerus and radius. `00_setup/04_prepare_atac_peaks.py` now
 downloads the published peak workbook and writes the eight elements as the
 BED files the analysis reads; the existing loader needed no change.
 
-*Residual risk, and it is the open one.* The values in Figure 4B and in
-`fig4b_regulatory_density.csv` were computed before this was corrected, from
-peak files whose provenance is not recorded in this repository. Identifying
-the right dataset does not retroactively make those numbers come from it.
-**Figure 4B has to be regenerated from GSE252289 and `make verify` re-run
-before the paper is submitted.** Until that is done, the observed value, the
-length-matched null and the Z in that panel are unverified.
+*What a partial recomputation shows.*
+`04_analysis/07b_recheck_regulatory_density.py` redoes the shared-layer half
+of the panel directly from GSE252289, without the pipeline, and puts the two
+side by side:
+
+| | observed | length-matched null | Z |
+|---|---:|---:|---:|
+| recomputed from GSE252289 | 7.50 | 5.50 ± 0.46 | +4.39 |
+| shipped in `fig4b_regulatory_density.csv` | 13.16 | 11.11 ± 0.55 | +3.69 |
+
+The **absolute densities are not reproduced** — they are roughly 1.8-fold
+higher in the shipped table, which is what one expects from a different peak
+set. The **effect is**: an excess of about two peaks per element over a
+length-matched null, in the same direction, at a similar Z. The relative
+excess is in fact larger with the correct data, 1.36-fold against 1.18-fold.
+The conclusion the panel supports therefore survives the correction; the
+numbers printed on it do not.
+
+*Residual risk, and it is the open one.* Identifying the right dataset does
+not retroactively make the shipped numbers come from it, and the recheck
+script cannot close the gap on its own: it has to use every gene in the MAGMA
+location table as the background instead of the 18,392 genes that carried a Z
+at all six sites, and the 36 site-specific genes — the second point of the
+panel — are not recoverable from what ships here at all. **Figure 4B has to be
+regenerated from the full pipeline against GSE252289 before the paper is
+submitted.** Until then the observed value, the null and the Z printed in that
+panel are unverified.
+
+*Also worth fixing while there.* The `p` column of
+`fig4b_regulatory_density.csv` is a two-sided normal p derived from Z, not the
+empirical p over the resamples that `07_pathways_and_axis.py` writes, and the
+Methods say 5,000 resamples where the script's default is 2,000
+(`N_PERMUTATIONS` in `00_setup/config.py`). Both are further signs that the
+panel table did not come from the pipeline as it now stands; see issue 11.

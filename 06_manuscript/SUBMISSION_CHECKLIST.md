@@ -58,18 +58,39 @@ sie sind für die eigene Durchsicht, nicht für die Einreichung.
 Drei Punkte, die niemand außer den Autoren schließen kann.
 
 1. **Abbildung 4B neu rechnen.** Die ATAC-Akzession im Repository war falsch
-   (GSE170199 = HepG2-ChIP-seq). Die richtige Quelle ist jetzt identifiziert
-   und verdrahtet — GSE252289, Richard et al., *Cell* 2025, acht Limb-Elemente,
+   (GSE170199 = HepG2-ChIP-seq). Die richtige Quelle ist identifiziert und
+   verdrahtet — GSE252289, Richard et al., *Cell* 2025, acht Limb-Elemente,
    hg19 — aber die Zahlen in Abbildung 4B stammen noch aus dem alten Lauf mit
-   Peak-Dateien unbekannter Herkunft. Vor dem Absenden:
+   Peak-Dateien unbekannter Herkunft.
+
+   Eine Teilkontrolle gegen GSE252289 läuft bereits ohne Pipeline:
 
    ```bash
    python 00_setup/04_prepare_atac_peaks.py
-   python 04_analysis/07_pathways_and_axis.py
+   python 04_analysis/07b_recheck_regulatory_density.py
+   ```
+
+   Ergebnis: 7,50 gegen einen längengematchten Null von 5,50 ± 0,46,
+   Z = +4,39 — gegenüber 13,16 / 11,11 ± 0,55 / Z = +3,69 in der
+   ausgelieferten Tabelle. **Die Aussage hält, die absoluten Werte nicht.**
+   Der Überschuss über den Null ist relativ sogar größer (1,36-fach statt
+   1,18-fach).
+
+   Die Teilkontrolle kann das Panel nicht ersetzen: sie nutzt als Hintergrund
+   alle Gene der MAGMA-Positionstabelle statt der 18.392 mit Z an allen sechs
+   Sites, und die 36 site-spezifischen Gene — der zweite Punkt im Panel —
+   lassen sich aus dem Ausgelieferten gar nicht rekonstruieren. Für die
+   endgültige Fassung:
+
+   ```bash
+   python 00_setup/04_prepare_atac_peaks.py
+   python 04_analysis/07_pathways_and_axis.py    # braucht die volle Pipeline
    make figures && make verify
    ```
 
-   Siehe `docs/KNOWN_ISSUES.md`, Punkt 12.
+   Danach die drei Zahlen im Ergebnisteil („13.2 against 11.1 ± 0.6 …,
+   Z = +3.7, P = 2 × 10⁻⁴") und in `numbers.json` anpassen. Siehe
+   `docs/KNOWN_ISSUES.md`, Punkt 12.
 2. **Acknowledgments** ausfüllen; steht als „To be completed".
 3. **Reviewer-Vorschläge und Ausschlüsse** in den Cover Letter.
 
