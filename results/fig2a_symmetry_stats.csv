@@ -1,0 +1,9 @@
+statistic,value
+mean_regions_breadth_le1,2.7238134206219313
+mean_regions_breadth_ge5,3.4657534246575343
+frac_generalised_le1,0.31669394435351883
+frac_generalised_ge5,0.4931506849315068
+mannwhitney_p,0.0002197318587894025
+spearman_breadth_vs_n_hpo_terms,-0.006678302271883853
+spearman_p,0.7244381696669024
+n_genes,2789.0

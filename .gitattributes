@@ -1,0 +1,11 @@
+# Text files are stored with LF in the repository and checked out as the
+# platform prefers. The two shell scripts must keep LF even on Windows, or
+# bash refuses to run them.
+* text=auto eol=lf
+*.sh text eol=lf
+
+# Binary: never normalise, never diff as text.
+*.tif binary
+*.pdf binary
+*.png binary
+*.xlsx binary

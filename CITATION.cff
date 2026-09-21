@@ -1,0 +1,112 @@
+cff-version: 1.2.0
+title: >-
+  skeletal-breadth: analysis code for "How widely a gene acts across the
+  skeleton predicts how widely its mutations cause disease"
+message: >-
+  If you use this software or the derived data in this repository, please cite
+  both the software and the manuscript it accompanies.
+type: software
+authors:
+  - given-names: Alexander
+    family-names: Schulz
+    orcid: "https://orcid.org/0009-0009-2605-4350"
+    affiliation: >-
+      Institute of Human Genetics, Universitätsklinikum Erlangen,
+      Friedrich-Alexander-Universität Erlangen-Nürnberg, Erlangen, Germany
+  - given-names: Christian T.
+    family-names: Thiel
+    email: Christian.Thiel@uk-erlangen.de
+    orcid: "https://orcid.org/0000-0003-3817-7277"
+    affiliation: >-
+      Institute of Human Genetics, Universitätsklinikum Erlangen,
+      Friedrich-Alexander-Universität Erlangen-Nürnberg, Erlangen, Germany
+abstract: >-
+  Companion repository for a study of skeletal genetic architecture. For every
+  gene, breadth is the number of six anatomically named DXA bone-mineral-
+  density sites at which it acts. Breadth predicts whether a gene causes
+  Mendelian skeletal disease, across three independent curations; it predicts
+  how many body regions that disease extends over; it does not cross the organ
+  boundary, which resolves the published phenome-wide null result for the
+  correspondence between common-variant and Mendelian pleiotropy; and it
+  replicates in an independent cohort and carries fracture risk. The repository
+  reproduces every number and figure of the paper from public summary
+  statistics.
+keywords:
+  - bone mineral density
+  - Mendelian disease
+  - pleiotropy
+  - skeletal dysplasia
+  - GWAS
+  - MAGMA
+  - human phenotype ontology
+  - gene-level association
+license: MIT
+license-url: https://opensource.org/licenses/MIT
+repository-code: https://github.com/alexschulzcell/skeletal-paper
+version: 1.0.0
+date-released: "2026-09-21"
+
+preferred-citation:
+  type: article
+  title: >-
+    How widely a gene acts across the skeleton predicts how widely its
+    mutations cause disease
+  authors:
+    - given-names: Alexander
+      family-names: Schulz
+      orcid: "https://orcid.org/0009-0009-2605-4350"
+    - given-names: Christian T.
+      family-names: Thiel
+      orcid: "https://orcid.org/0000-0003-3817-7277"
+  year: 2026
+  journal: American Journal of Human Genetics
+  notes: Manuscript under submission; this entry will be updated on acceptance.
+
+references:
+  - type: article
+    title: >-
+      Phenome-wide analysis of the correspondence between Mendelian and
+      common-variant pleiotropy
+    authors:
+      - family-names: Barbitoff
+        given-names: Yury
+    year: 2025
+    journal: Molecular Biology and Evolution
+    notes: The null result this study resolves.
+  - type: article
+    title: >-
+      Phenotype-specific enrichment of Mendelian disorder genes near GWAS
+      regions across 62 complex traits
+    authors:
+      - family-names: Freund
+        given-names: Malika
+    year: 2018
+    journal: American Journal of Human Genetics
+  - type: article
+    title: >-
+      Phenotypic dissection of bone mineral density reveals skeletal site
+      specificity and facilitates the identification of novel loci
+    authors:
+      - family-names: Kemp
+        given-names: John P.
+      - family-names: Medina-Gomez
+        given-names: Carolina
+    year: 2014
+    journal: PLOS Genetics
+  - type: article
+    title: >-
+      Whole-genome sequencing identifies EN1 as a determinant of bone density
+      and fracture
+    authors:
+      - family-names: Zheng
+        given-names: Hou-Feng
+    year: 2015
+    journal: Nature
+    notes: Source of the GEFOS/UK10K replication cohort.
+  - type: software
+    title: MAGMA, generalized gene-set analysis of GWAS data
+    authors:
+      - family-names: de Leeuw
+        given-names: Christiaan A.
+    year: 2015
+    notes: Gene-level association statistics; version 1.10.

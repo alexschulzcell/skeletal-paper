@@ -1,0 +1,51 @@
+# Conda environment for the skeletal-breadth companion repository.
+#
+#   conda env create -f environment.yml
+#   conda activate skeletal-breadth
+#
+# Everything the pipeline needs is here, including MAGMA itself, which comes
+# from bioconda and does not have to be installed by hand. If your platform has
+# no MAGMA package, download the binary from
+# https://cncr.nl/research/magma/ and point MAGMA_BIN at it.
+#
+# Everything is Python; there is no R in this project. An earlier version of
+# this file installed R and ggplot2 "for the figure scripts", which are in fact
+# pure matplotlib.
+#
+# Tested on Python 3.12 with the versions pinned below, on Linux, macOS
+# (Apple silicon, through Rosetta for MAGMA) and Windows under WSL. The native
+# Windows path works for the Python stages; the two shell scripts in 00_setup/
+# and 01_gene_scores/ need a POSIX shell.
+
+name: skeletal-breadth
+
+channels:
+  - conda-forge
+  - bioconda
+
+dependencies:
+  # --- core -----------------------------------------------------------------
+  - python=3.12
+  - pip
+
+  # --- analysis -------------------------------------------------------------
+  - numpy=2.1
+  - pandas=2.2
+  - scipy=1.14
+  - statsmodels=0.14
+  - scikit-learn=1.5
+
+  # --- figures and the submission PDFs --------------------------------------
+  - matplotlib=3.9
+  - pillow=11.0
+  - reportlab=4.2
+  - pymupdf=1.24
+
+  # --- gene-level association ----------------------------------------------
+  - magma=1.10
+
+  # --- download and file handling ------------------------------------------
+  - curl
+  - unzip
+  - gzip
+  - coreutils          # md5sum, on macOS as well

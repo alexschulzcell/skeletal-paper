@@ -1,0 +1,3 @@
+dataset,n_traits,mean_r,min_r,max_r,shared_layer
+"Skeleton, 6 DXA sites",6,0.443088833990464,0.25056604252137504,0.6357627827350616,yes
+"Brain, 7 subcortical volumes",7,0.11897264526147752,0.0407681424008144,0.20819976250150843,no

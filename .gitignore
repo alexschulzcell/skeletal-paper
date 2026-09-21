@@ -1,0 +1,54 @@
+# ---------------------------------------------------------------------------
+# Raw and downloaded data. Nothing under data_raw/ belongs in version control:
+# it is tens of gigabytes, it is public at the sources named in
+# docs/DATA_SOURCES.md, and 00_setup/ fetches it.
+# ---------------------------------------------------------------------------
+data_raw/
+*.tsv.gz
+*.vcf.gz
+*.bgz
+*.bed.gz
+*.gaf.gz
+*.tar
+
+# MAGMA intermediates and logs. `*.log` is deliberately NOT ignored wholesale:
+# results/magma_run.log is the progress file the README tells you to tail.
+*.genes.raw
+*.genes.annot
+*.pval
+data_raw/**/*.log
+*.log.suppl
+*.run.log
+
+# ---------------------------------------------------------------------------
+# Results and figures ARE tracked - they are the point of a companion
+# repository - but their scratch files are not.
+# ---------------------------------------------------------------------------
+results/*.tmp
+results/*.part
+figures/*.tmp
+
+# Rendered submission PDFs are build products of 06_manuscript/render_pdf.py.
+06_manuscript/pdf/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+*.egg-info/
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+*.swp
