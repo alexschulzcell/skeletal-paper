@@ -128,6 +128,12 @@ def register_fonts() -> tuple[str, str, str, str]:
 
 # ----------------------------------------------------------------- markdown
 _SUP = re.compile(r"<sup>(.*?)</sup>", re.S)
+# Sentinel for a Markdown hard line break: `blocks` inserts it, `inline`
+# turns it into a <br/> after escaping, so nothing in the document can
+# introduce one of its own.
+HARD_BREAK = chr(4)
+# Sentinel for a backslash-escaped asterisk, restored at the end.
+ESC_STAR = chr(1)
 
 
 def inline(text: str, regular: str, bold: str, italic: str) -> str:
@@ -145,7 +151,8 @@ def inline(text: str, regular: str, bold: str, italic: str) -> str:
     else:
         text = re.sub(r"`([^`]+?)`", r"\1", text)
     text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r"\1", text)
-    return text.replace("\u0001", "*")
+    text = text.replace(HARD_BREAK, "<br/>")
+    return text.replace(ESC_STAR, "*")
 
 
 def blocks(md: str):
@@ -184,14 +191,23 @@ def blocks(md: str):
                 i += 1
             out.append(("list", list(zip(indent, items))))
         else:
-            para = []
+            para, raw = [], []
             while i < len(lines) and lines[i].strip() and not lines[i].startswith("#") \
                     and lines[i].strip() not in ("---", "***", "___") \
                     and not lines[i].lstrip().startswith("|") \
                     and not re.match(r"^\s*(\d+\.|[-*+])\s+", lines[i]):
+                raw.append(lines[i])
                 para.append(lines[i].strip())
                 i += 1
-            out.append(("p", " ".join(para)))
+            # A source line ending in two spaces is a hard break, as in
+            # Markdown. Address blocks and signatures need one; running
+            # prose must not get one.
+            joined = ""
+            for k, line in enumerate(para):
+                joined += line
+                if k < len(para) - 1:
+                    joined += HARD_BREAK if raw[k].endswith("  ") else " "
+            out.append(("p", joined))
     return out
 
 
@@ -227,7 +243,8 @@ class Numbered(Paragraph):
 # ------------------------------------------------------------------- render
 def build(md_path: Path, out_path: Path, *, line_numbers: bool,
           title: str, figures: list[Path] | None = None,
-          fig_captions: list[str] | None = None) -> None:
+          fig_captions: list[str] | None = None,
+          header_from_page: int = 1, page_numbers_from: int = 1) -> None:
     regular, bold, italic, bolditalic = register_fonts()
     Numbered.enabled["on"] = line_numbers
     Numbered.counter["n"] = 0
@@ -312,9 +329,17 @@ def build(md_path: Path, out_path: Path, *, line_numbers: bool,
         canvas.saveState()
         canvas.setFont(regular, 8)
         canvas.setFillColor(colors.HexColor("#9AA3A8"))
-        canvas.drawCentredString(PAGE[0] / 2, MARGIN_B - 11,
-                                 f"{doc.page}")
-        canvas.drawString(MARGIN_L, PAGE[1] - MARGIN_T + 7, title)
+        if doc.page >= page_numbers_from:
+            canvas.drawCentredString(PAGE[0] / 2, MARGIN_B - 11, f"{doc.page}")
+        # A letter carries no running head on its own first page; a manuscript
+        # and a supplement carry one on every page so that a printed sheet that
+        # gets separated can still be identified.
+        if title and doc.page >= header_from_page:
+            canvas.drawString(MARGIN_L, PAGE[1] - MARGIN_T + 7, title)
+            canvas.setStrokeColor(colors.HexColor("#E6EAEC"))
+            canvas.setLineWidth(0.5)
+            canvas.line(MARGIN_L, PAGE[1] - MARGIN_T + 4,
+                        PAGE[0] - MARGIN_R, PAGE[1] - MARGIN_T + 4)
         canvas.restoreState()
 
     OUT.mkdir(parents=True, exist_ok=True)
@@ -412,10 +437,14 @@ def main() -> int:
         "supplement": dict(
             md_path=md / "supplement.md",
             out_path=OUT / "Supplemental Information.pdf",
-            line_numbers=False, title="Supplemental Information"),
+            line_numbers=False,
+            title="Supplemental Information · Schulz and Thiel · "
+                  "Breadth of action across the skeleton"),
         "cover": dict(
             md_path=md / "cover_letter.md", out_path=OUT / "Cover Letter.pdf",
-            line_numbers=False, title=""),
+            line_numbers=False,
+            title="Cover letter · Schulz and Thiel · AJHG Report",
+            header_from_page=2, page_numbers_from=2),
     }
     for name, kw in jobs.items():
         if args.only and name != args.only:

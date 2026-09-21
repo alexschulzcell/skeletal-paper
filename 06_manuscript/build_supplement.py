@@ -45,7 +45,14 @@ def main() -> int:
     add("# Supplemental information\n")
     add("**How widely a gene acts across the skeleton predicts how widely its "
         "mutations cause disease**\n")
-    add("Alexander Zentgraf\n")
+    add("Alexander Schulz and Christian T. Thiel\n")
+    add("Institute of Human Genetics, Universitätsklinikum Erlangen, "
+        "Friedrich-Alexander-Universität Erlangen-Nürnberg, 91054 Erlangen, "
+        "Germany  \n"
+        "Correspondence: Christian.Thiel@uk-erlangen.de\n")
+    add("Every table below is generated from the result tables in `results/` by "
+        "`06_manuscript/build_supplement.py`, so none of it can disagree with a "
+        "figure or with the main text.\n")
     add("---\n")
 
     add("## Contents\n")

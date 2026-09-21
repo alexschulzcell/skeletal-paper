@@ -17,23 +17,23 @@ Friedrich-Alexander-Universität Erlangen-Nürnberg, 91054 Erlangen, Germany
 
 ## Abstract
 
-Mendelian disease genes are enriched at the loci of common-variant associations, yet across the
-phenome the number of traits a gene affects in genome-wide association studies does not predict
-the number of phenotypes its rare variants cause. We asked whether that correspondence is real
-but anatomically local. Within one organ system, we used bone mineral density at six anatomically
-named skeletal sites in 30,449–32,017 individuals to give each of 18,392 genes one number: the
-count of sites at which it acts.
-Breadth of action predicted Mendelian skeletal disease in three independent curations, with odds
-ratios of 5.5, 2.5 and 4.6 for genes acting at all six sites and a graded rise of 1.11 to 1.23 per
-additional site. Breadth also predicted how much of the body the disease involved: genes acting at
-five or six sites affected 3.47 of six body regions against 2.72 for genes acting at one site or
-none, unchanged after adjusting for how well each gene is studied. The relation did not
-cross the organ boundary: breadth across seven brain volumes predicted neither skeletal nor
-neurological phenotype breadth, because those volumes share too little genetic architecture for a
-shared layer to exist. This reproduces and explains the phenome-wide null result. The layer
-replicated in a cohort with no UK Biobank participants and carried fracture risk: 5% to 53% of
-genes with a fracture signal. One property of a gene spans two clinical ends:
-generalized dysplasia when it is severely mutated, fracture when it is finely tuned.
+Mendelian disease genes crowd the loci of common-variant associations, so a gene acting on many
+traits ought to cause many phenotypes when it breaks. Across the phenome it does not: the two
+kinds of pleiotropy are uncorrelated. We suspected the comparison, not the biology. A
+phenome-wide count treats bone density, urate and lung function as interchangeable, and weighs
+them against ontology terms from every organ — which hides an anatomically local correspondence.
+So we measured breadth on both sides with the same anatomy, inside one organ. Bone mineral
+density at six anatomically named skeletal sites in 30,449–32,017 individuals gives each of
+18,392 genes one number: how many sites it acts at. That number predicted Mendelian skeletal
+disease in three independent curations — odds ratios 5.5, 2.5 and 4.6 at all six sites, and a
+graded rise of 1.11 to 1.23 per site. It also predicted how much of the body the disease
+involved: 3.47 of six regions against 2.72 for genes acting at one site or none, research effort
+adjusted out. The control designed to kill the result did not. Rebuilt on seven brain volumes,
+breadth predicted nothing in either organ: those volumes share too little genetic architecture
+for a shared layer to exist — the phenome-wide null seen from inside. The layer replicated in a
+cohort with no UK Biobank participants and reached the clinic, genes carrying a fracture signal
+rising from 5% to 53%. One property spans two clinical ends: generalized dysplasia when severely
+mutated, fracture when finely tuned.
 
 ---
 

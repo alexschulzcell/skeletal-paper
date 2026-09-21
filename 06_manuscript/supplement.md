@@ -2,7 +2,12 @@
 
 **How widely a gene acts across the skeleton predicts how widely its mutations cause disease**
 
-Alexander Zentgraf
+Alexander Schulz and Christian T. Thiel
+
+Institute of Human Genetics, Universitätsklinikum Erlangen, Friedrich-Alexander-Universität Erlangen-Nürnberg, 91054 Erlangen, Germany  
+Correspondence: Christian.Thiel@uk-erlangen.de
+
+Every table below is generated from the result tables in `results/` by `06_manuscript/build_supplement.py`, so none of it can disagree with a figure or with the main text.
 
 ---
 
