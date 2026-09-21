@@ -19,7 +19,7 @@ export SKELBREADTH_DATA ?= $(CURDIR)/data_raw
 export SKELBREADTH_ROOT ?= $(CURDIR)
 
 .DEFAULT_GOAL := help
-.PHONY: help data genes layers truth analysis figures manuscript verify all \
+.PHONY: help data genes layers truth analysis figures all \
         clean clean-results check
 
 # ---------------------------------------------------------------------------
@@ -36,11 +36,9 @@ help:
 	@echo "  make truth      build the four truth sides                      ~10 min"
 	@echo "  make analysis   layers + truth + the seven analyses             ~15 min"
 	@echo "  make figures    redraw the figures from results/                ~2 min"
-	@echo "  make manuscript supplement, then the three submission PDFs      ~1 min"
-	@echo "  make all        data -> genes -> analysis -> figures -> paper"
+	@echo "  make all        data -> genes -> analysis -> figures"
 	@echo ""
 	@echo "  make check      verify the inputs without running anything      <1 min"
-	@echo "  make verify     check every manuscript number against results/  <1 min"
 	@echo "  make clean-results   delete results/ and figures/ contents"
 	@echo "  make clean      also delete MAGMA intermediates (keeps downloads)"
 	@echo ""
@@ -105,19 +103,9 @@ figures:
 	  echo "--- $$f"; $(PYTHON) "$$f" || exit 1; \
 	done
 
-# --- stage 06 --------------------------------------------------------------
-
-verify:
-	$(PYTHON) 06_manuscript/check_numbers.py
-
-manuscript: verify
-	$(PYTHON) 06_manuscript/build_supplement.py
-	$(PYTHON) 06_manuscript/render_pdf.py
-
-all: data genes analysis figures manuscript
+all: data genes analysis figures
 	@echo ""
-	@echo "Done. Every number of the paper is in results/, every figure in"
-	@echo "figures/, and the three submission PDFs in 06_manuscript/pdf/."
+	@echo "Done. Every table is in results/, every figure in figures/."
 
 # --- housekeeping ----------------------------------------------------------
 
@@ -125,10 +113,8 @@ clean-results:
 	@find results -type f ! -name '.gitkeep' ! -name 'README.md' \
 	     ! -name 'fig*.csv' -delete
 	@find figures -type f ! -name '.gitkeep' ! -name 'README.md' -delete
-	@rm -rf 06_manuscript/pdf
-	@echo "results/ and figures/ emptied, PDFs removed. Downloads untouched."
-	@echo "The fig*.csv panel tables are kept: nothing in this repository"
-	@echo "regenerates them yet. See issue 11 in docs/KNOWN_ISSUES.md."
+	@echo "results/ and figures/ emptied. Downloads untouched."
+	@echo "The fig*.csv panel tables are kept; see results/README.md."
 
 clean: clean-results
 	@rm -f $(SKELBREADTH_DATA)/magma/*.genes.raw \

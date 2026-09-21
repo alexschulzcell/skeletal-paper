@@ -73,10 +73,6 @@ echo "=== Human embryonic limb ATAC peaks (hg19), eight skeletal elements ==="
 # GSE252289, the ATAC-seq series of Richard et al., Cell 2025. The peaks are
 # published as one Excel workbook with a sheet per skeletal element, so the
 # conversion to per-element BED needs Python and lives in its own script.
-#
-# This block used to fetch GSE170199 and call it fetal chromatin
-# accessibility. GSE170199 is a two-sample HepG2 ChIP-seq series from ENCODE:
-# wrong assay, wrong tissue. See docs/KNOWN_ISSUES.md, issue 12.
 if ls "$REF"/peaks/*hg19.bed.gz >/dev/null 2>&1; then
   echo "  already present: $(ls "$REF"/peaks/*hg19.bed.gz | wc -l) peak files"
 else

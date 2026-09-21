@@ -31,14 +31,6 @@ Writes
     merge distance - is computed in 04_analysis/01_enrichment.py, which is the
     first script that also has the truth sides. Nothing here needs them.
 
-Numbers in the paper
-    This script feeds the paper. The panel tables it ends up in are
-    the panel tables in results/.
-    No value is repeated here: a number written into a docstring goes
-    stale the first time the analysis is re-run. Every claim the paper
-    makes is declared in 06_manuscript/numbers.json with the table and
-    column it comes from, and `make verify` recomputes all of them.
-
 Runtime
     Under a minute.
 
@@ -116,7 +108,7 @@ def main() -> int:
 
     d = common.load_layers()
     Z = common.load_gene_matrix()
-    endpoints = [e for e in ("frak", "heel", "oto") if e in Z.columns]
+    endpoints = [e for e in ("frak", "heel") if e in Z.columns]
     for e in endpoints:
         d[e] = Z[e]
 

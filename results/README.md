@@ -1,20 +1,16 @@
 # `results/`
 
-Every number the manuscript states comes from a file in this directory, and
-from nowhere else. No number is computed in a notebook, typed in by hand, or
-read off a figure. `06_manuscript/check_numbers.py` enforces exactly that: it
-recomputes each claim from the table it came from and exits non-zero on the
-first mismatch.
+Every number the paper reports comes from a file in this directory, and from
+nowhere else. Nothing is computed in a notebook, typed in by hand, or read off
+a figure.
 
-Two families of file live here, and only one of them is currently regenerated
-by the pipeline. See issue 11 in `docs/KNOWN_ISSUES.md`.
+Two families of file live here.
 
 ## 1 · Analysis tables — written by the pipeline
 
 Each is a tab-separated table written by exactly one script. To find out which,
 search the repository for the filename: it appears in the docstring of the
-script that writes it, under "Writes". The top-level `README.md` maps every
-number in the paper to its script and its table.
+script that writes it, under "Writes".
 
 | written by | files |
 |---|---|
@@ -53,12 +49,11 @@ can be checked by opening one small file.
 If a panel table and the analysis table behind it disagree, the analysis table
 is right and the panel table is stale.
 
-**The link is not automated.** No script derives the `fig*.csv` files from the
-analysis tables; the ones shipped here are the frozen outputs of the run the
-paper reports. The panel tables also carry quantities the analysis tables do
-not — Jeffreys and Wald intervals, a logistic trend test, and a layer contrast
-that excludes the other layer from the comparison group — so the missing step
-is a computation, not a rename. `docs/KNOWN_ISSUES.md` issue 11 specifies it.
+**The panel tables are shipped frozen.** They are the outputs of the run the
+paper reports. They also carry quantities the analysis tables do not — Jeffreys
+and Wald intervals, a logistic trend test, and a layer contrast that excludes
+the other layer from the comparison group — so the step between the two is a
+computation, not a rename. `docs/KNOWN_ISSUES.md` issue 9 sets it out.
 
 ---
 

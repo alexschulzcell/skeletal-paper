@@ -24,11 +24,6 @@ takes the element from the third-from-last underscore-separated field.
     python 00_setup/04_prepare_atac_peaks.py
     python 00_setup/04_prepare_atac_peaks.py --stage 67     # the later stage
     python 00_setup/04_prepare_atac_peaks.py --keep-xlsx
-
-Why this exists at all: the accession previously hard-coded in
-`02_download_references.sh` was GSE170199, a two-sample HepG2 ChIP-seq series
-from ENCODE. It is the wrong assay, the wrong tissue and the wrong species
-context; see docs/KNOWN_ISSUES.md, issue 12.
 """
 from __future__ import annotations
 

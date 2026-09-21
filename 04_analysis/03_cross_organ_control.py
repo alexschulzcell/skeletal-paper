@@ -42,13 +42,9 @@ Writes
     results/cross_organ_models.tsv     the two full regressions
     results/cross_organ_correlation.tsv  breadth-breadth and region-region
 
-Numbers in the paper
-    This script feeds Figures 2B and 2C. The panel tables it ends up in are
+Figures
+    Figures 2B and 2C. Panel tables:
     fig2b_cross_organ.csv, fig2c_trait_coherence.csv.
-    No value is repeated here: a number written into a docstring goes
-    stale the first time the analysis is re-run. Every claim the paper
-    makes is declared in 06_manuscript/numbers.json with the table and
-    column it comes from, and `make verify` recomputes all of them.
 
 Runtime
     One minute.

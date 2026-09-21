@@ -2,7 +2,7 @@
 
 Writes  figures/graphical_abstract.tif, figures/graphical_abstract.pdf
 
-Cell Press specification followed here
+Specification followed here
   * one single panel, 5.5 inches square at 300 dpi
   * Arial, 12-16 points throughout
   * reads top to bottom, with a clear start and a clear end

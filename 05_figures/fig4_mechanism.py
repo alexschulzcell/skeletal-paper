@@ -63,8 +63,8 @@ ax = fig.add_subplot(gs[0, 1])
 S.panel(ax, "B", dx=-0.600, dy=1.155)
 S.headline(ax, "Denser regulation", y=1.040, x=-0.530)
 # An observation against a null interval, drawn as an observation against a
-# null interval. Bars were wrong here twice over: they implied a count from
-# zero, and the axis does not start at zero, so their lengths meant nothing.
+# null interval: a point for the observed density, a whisker for the null.
+# Bars are avoided because the axis does not start at zero.
 for i, (layer, col) in enumerate([("Shared layer", S.SHARED),
                                   ("Site-specific layer", S.SITE)]):
     r = rd.loc[layer]
@@ -83,7 +83,11 @@ for i, (layer, col) in enumerate([("Shared layer", S.SHARED),
 ax.set_xticks([0, 1])
 ax.set_xticklabels(["Shared\nlayer", "Site-\nspecific"])
 ax.set_xlim(-0.65, 1.65)
-ax.set_ylim(9.0, 14.6)
+# The span is taken from the data, so the axis cannot fall out of step with it.
+_lo = min((rd.expected - 1.96 * rd.sd).min(), rd.observed_peaks_per_element.min())
+_hi = max((rd.expected + 1.96 * rd.sd).max(), rd.observed_peaks_per_element.max())
+_pad = 0.18 * (_hi - _lo)
+ax.set_ylim(_lo - _pad, _hi + 1.5 * _pad)
 ax.set_ylabel("Open-chromatin peaks per\nregulatory element")
 S.ygrid(ax)
 ax.text(0.5, -0.175, "grey: length-matched null,\nmean and 95% interval",

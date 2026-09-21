@@ -34,14 +34,8 @@ Writes
     results/confounder_matched_nulls.tsv  observed, null mean, sd, z, empirical p
     results/confounder_models.tsv     the logistic models with covariates
 
-Numbers in the paper
-    This script feeds the supplement. The panel tables it ends up in are
-    none; the confounder controls are described in the paper
-    but no panel table is drawn from them.
-    No value is repeated here: a number written into a docstring goes
-    stale the first time the analysis is re-run. Every claim the paper
-    makes is declared in 06_manuscript/numbers.json with the table and
-    column it comes from, and `make verify` recomputes all of them.
+Figures
+    None; the confounder controls are reported in the text.
 
 Runtime
     Two to four minutes; the matched nulls dominate.

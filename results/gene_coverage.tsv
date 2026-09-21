@@ -1,0 +1,22 @@
+trait	label	N	genes_tested	genes_in_matrix	frac_at_p_floor
+head	Head	31986	18392	18392	0.002
+arms	Arms	31986	18392	18392	0.0008
+legs	Legs	31986	18392	18392	0.0008
+pelvis	Pelvis	31986	18392	18392	0.0008
+fn	Femoral neck	31986	18392	18392	0.0003
+ls	Lumbar spine	31986	18392	18392	0.0007
+frak	Fracture	426795	19242	18386	0.0008
+oto	Otosclerosis	864702	19173	18350	0.0018
+heel	Heel BMD (ultrasound)	426824	19261	18383	0.0627
+height	Standing height	1232747	18258	18252	0.3332
+prop	Sitting-height ratio	473511	18564	18392	0.0577
+fn2stu	Femoral neck	34806	18530	18387	0.0003
+ls2stu	Lumbar spine	25759	18530	18388	0.0005
+fa2stu	Forearm	8112	18509	18384	0.0001
+thalamus	thalamus	33211	19343	18375	0.0002
+caudate	caudate	33211	19343	18375	0.0008
+putamen	putamen	33211	19343	18375	0.0005
+pallidum	pallidum	33211	19343	18375	0.0005
+hippocampus	hippocampus	33211	19343	18375	0.0001
+amygdala	amygdala	33211	19343	18375	0.0
+accumbens	accumbens	33211	19343	18375	0.0001

@@ -37,14 +37,10 @@ Writes
     results/replication_redefined.tsv    the structure re-derived in GEFOS
     results/replication_overlap.tsv      gene-list overlap between cohorts
 
-Numbers in the paper
-    This script feeds Figure 3A. The panel tables it ends up in are
+Figures
+    Figure 3A. Panel tables:
     fig3a_gefos_replication.csv, fig3a_gefos_stats.csv,
     fig3a_gefos_conditional.csv.
-    No value is repeated here: a number written into a docstring goes
-    stale the first time the analysis is re-run. Every claim the paper
-    makes is declared in 06_manuscript/numbers.json with the table and
-    column it comes from, and `make verify` recomputes all of them.
 
 Runtime
     Under a minute.

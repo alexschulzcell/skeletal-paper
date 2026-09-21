@@ -36,14 +36,10 @@ Writes
     results/enrichment_locus_sweep.tsv
     results/enrichment_continuous.tsv    the threshold-free comparison
 
-Numbers in the paper
-    This script feeds Figures 1B-1D. The panel tables it ends up in are
+Figures
+    Figures 1B-1D. Panel tables:
     fig1b_dose_response.csv, fig1b_trend_tests.csv,
     fig1c_threshold_sweep.csv, fig1d_locus_sweep.csv.
-    No value is repeated here: a number written into a docstring goes
-    stale the first time the analysis is re-run. Every claim the paper
-    makes is declared in 06_manuscript/numbers.json with the table and
-    column it comes from, and `make verify` recomputes all of them.
 
 Runtime
     Under a minute.

@@ -42,14 +42,10 @@ Writes
     results/maturation_axis.tsv        per-gene axis position (when available)
     results/maturation_axis_markers.tsv  the published markers on that axis
 
-Numbers in the paper
-    This script feeds Figure 4. The panel tables it ends up in are
+Figures
+    Figure 4. Panel tables:
     fig4a_pathways.csv, fig4b_regulatory_density.csv,
     fig4c_shared_layer_genes.csv.
-    No value is repeated here: a number written into a docstring goes
-    stale the first time the analysis is re-run. Every claim the paper
-    makes is declared in 06_manuscript/numbers.json with the table and
-    column it comes from, and `make verify` recomputes all of them.
 
 Runtime
     Two to five minutes, most of it counting ATAC peaks.

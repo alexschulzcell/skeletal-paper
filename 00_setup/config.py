@@ -66,7 +66,6 @@ BMD_SITE_LABELS = {
 #: define breadth so that no endpoint can enter its own predictor.
 ENDPOINTS = {
     "frak": "Fracture",
-    "oto": "Otosclerosis",
     "heel": "Heel BMD (ultrasound)",
     "height": "Standing height",
     "prop": "Sitting-height ratio",
@@ -92,7 +91,6 @@ TRAIT_N = {
     "pelvis": 31986, "fn": 31986, "ls": 31986,
     "heel": 426824,
     "frak": 426795,
-    "oto": 864702,
     "height": 1232747,
     "prop": 473511,
     "fn2stu": 34806, "ls2stu": 25759, "fa2stu": 8112,
@@ -156,7 +154,8 @@ CLINVAR_SKELETAL_PATTERN = (
 # --------------------------------------------------------------------------
 
 SEED = 2026
-N_PERMUTATIONS = 2000   # matched-null draws in 04_analysis/04_confounders.py
+N_PERMUTATIONS = 5000   # matched-null draws in 04_analysis/04_confounders.py
+                        # and 04_analysis/07_pathways_and_axis.py
 
 
 # --------------------------------------------------------------------------

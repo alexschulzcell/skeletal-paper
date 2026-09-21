@@ -11,9 +11,10 @@ What it does
 
     It also records how many genes hit MAGMA's gene-p floor per trait. MAGMA
     does not report a gene p below 5e-10, which truncates the top of the
-    distribution: for height, 6.8 % of genes sit on the floor. Every analysis
+    distribution, and most heavily for the best-powered traits. Every analysis
     downstream is therefore rank-based where the top of the distribution could
-    matter. See docs/KNOWN_ISSUES.md.
+    matter. The per-trait share is written to results/gene_coverage.tsv.
+    See docs/KNOWN_ISSUES.md.
 
 Reads
     $SKELBREADTH_DATA/magma/<trait>.genes.out    (stage 01, script 02)
@@ -23,14 +24,6 @@ Writes
     results/gene_z_matrix.tsv     gene x trait Z, plus chromosome and gene
                                   coordinates, which 02_layers/02 needs
     results/gene_coverage.tsv     per trait: genes, missing, on the p floor
-
-Numbers in the paper
-    This script feeds the paper. The panel tables it ends up in are
-    the panel tables in results/.
-    No value is repeated here: a number written into a docstring goes
-    stale the first time the analysis is re-run. Every claim the paper
-    makes is declared in 06_manuscript/numbers.json with the table and
-    column it comes from, and `make verify` recomputes all of them.
 
 Runtime
     Under a minute.

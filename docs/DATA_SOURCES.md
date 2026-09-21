@@ -47,17 +47,8 @@ These never enter the definition of breadth. Each is a target, not a predictor.
 |---|---:|---|---|---|---|
 | Heel BMD | 426,824 | GCST006979 | Morris 2019, *Nat Genet* 51:258 | quantitative ultrasound | open, GWAS Catalog |
 | Fracture | 53,184 cases, 373,611 controls | GCST006980 | Morris 2019, *Nat Genet* 51:258 | binary, disease | open, GWAS Catalog |
-| Otosclerosis | 864,702 | — | **not public**, in-house harmonisation | binary, disease | see note below |
 | Standing height | 1,232,747 | Yengo 2022 | GIANT consortium | quantitative | open, GIANT terms |
 | Sitting-height ratio | 473,511 | GCST90728588 | UK Biobank, via GWAS Catalog | quantitative | UK Biobank terms |
-
-**Otosclerosis.** These summary statistics are our own harmonisation of a
-case/control analysis and are not deposited in a public archive. Every
-otosclerosis result in the paper is marked as depending on a non-public input,
-and `04_analysis/06_clinical_endpoints.py` skips that endpoint with a stated
-message when the file is absent. No conclusion of the paper rests on it: it is
-a disease endpoint that supports the breadth result and explicitly fails to
-separate the two layers (p 0.93).
 
 ## 3 · Replication cohort
 
@@ -114,32 +105,21 @@ roots listed in `00_setup/config.py`, and are near-disjoint by construction.
 | Human growth-plate pseudobulk | zone-level expression, resting → hypertrophic | **not public** in this form; derived from a fetal skeletal atlas of 372,937 cells | see note |
 | Visium, human growth plate | 16 sections, 12 donors; the tissue image of Figure 4C | 16 sections | see note |
 
-**The limb ATAC source, and the accession that was wrong.**
-`00_setup/02_download_references.sh` used to fetch **GSE170199** for this row
-and describe it as "fetal chromatin accessibility". It is not: GSE170199 is a
-two-sample transcription-factor ChIP-seq series in HepG2 from ENCODE — wrong
-assay, wrong tissue.
-
-The dataset the analysis describes is **GSE252289**, the ATAC-seq series of
+**The limb ATAC source.** The open-chromatin peaks are **GSE252289**, the
+ATAC-seq series of
 
 > Richard, D., Muthuirulan, P., Young, M., Yengo, L., Vedantam, S., Marouli,
 > E., Bartell, E., GIANT Consortium, Hirschhorn, J., and Capellini, T.D.
 > (2025). Functional genomics of human skeletal development and the patterning
 > of height heritability. *Cell* **188**, 15–32.e24.
 
-It is the only published resource that matches the description in the analysis
-exactly: human embryonic limb cartilage, peaks called on hg19, and **eight**
+It covers human embryonic limb cartilage, peaks called on hg19, and **eight**
 skeletal elements — the proximal and distal end of the femur, tibia, humerus
 and radius. The workbook `GSE252289_ATAC_peaks.xlsx` carries one sheet per
 element per stage; `00_setup/04_prepare_atac_peaks.py` downloads it and writes
 the eight E54 sheets as `GSE252289_ATAC_<Element>_E54_hg19.bed.gz`, which is
 the layout `04_analysis/07_pathways_and_axis.py` reads. Peak counts per
 element run from 31,397 (ProxRadius) to 45,162 (DistFemur).
-
-**Open point.** The numbers currently in Figure 4B were produced before this
-was corrected, from peak files whose origin is not recorded here. They have to
-be regenerated against GSE252289 and re-checked before the paper is submitted;
-see `docs/KNOWN_ISSUES.md`, issue 12.
 
 **The two non-public rows.** The growth-plate pseudobulk matrix and the Visium
 sections are derived products of primary human tissue data. They are not

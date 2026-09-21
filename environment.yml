@@ -8,9 +8,7 @@
 # no MAGMA package, download the binary from
 # https://cncr.nl/research/magma/ and point MAGMA_BIN at it.
 #
-# Everything is Python; there is no R in this project. An earlier version of
-# this file installed R and ggplot2 "for the figure scripts", which are in fact
-# pure matplotlib.
+# Everything is Python; the figure scripts are pure matplotlib.
 #
 # Tested on Python 3.12 with the versions pinned below, on Linux, macOS
 # (Apple silicon, through Rosetta for MAGMA) and Windows under WSL. The native
@@ -35,11 +33,12 @@ dependencies:
   - statsmodels=0.14
   - scikit-learn=1.5
 
-  # --- figures and the submission PDFs --------------------------------------
+  # --- figures --------------------------------------------------------------
   - matplotlib=3.9
   - pillow=11.0
-  - reportlab=4.2
-  - pymupdf=1.24
+
+  # --- reading the published ATAC peak workbook ------------------------------
+  - openpyxl=3.1
 
   # --- gene-level association ----------------------------------------------
   - magma=1.10

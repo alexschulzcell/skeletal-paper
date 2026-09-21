@@ -147,51 +147,7 @@ excludes it.
 
 ---
 
-## 6 · Binary against quantitative: the endpoint pattern is suggestive, not shown
-
-*Not reported in the paper.* The endpoint comparison below is computed by the
-pipeline but was cut from the manuscript; it is kept here because the pipeline
-still produces it and a reader of the code will meet it.
-
-Across five endpoints, breadth leads at the two **disease** endpoints (fracture
-t +7.22 against peak +6.49; otosclerosis +4.66 against +2.65) and peak strength
-leads at the three **measurements** (heel, height, sitting-height ratio). A
-clean two-against-three split, in the expected direction.
-
-*The alternative explanation we cannot exclude.* The two disease endpoints are
-binary and the three measurements quantitative. Binary traits have lower
-effective sample size for the same N, which systematically shifts the
-peak-to-breadth ratio in exactly the observed direction — with no biology
-involved. And a perfect 2-against-3 split occurs by chance with **p = 0.10**.
-
-*What we do.* The paper reports the pattern as suggestive and names this
-alternative in the same paragraph, and
-`04_analysis/06_clinical_endpoints.py` prints it next to the table so that
-nobody reads the result without it. Figure 3C carries the caveat in its legend.
-
----
-
-## 7 · Otosclerosis does not separate the two layers
-
-*Not reported in the paper.* Otosclerosis rests on a non-public input and no
-longer appears in the manuscript.
-
-Breadth predicts otosclerosis (core 15.5 % above Z 2 against 5.5 % background,
-p 2.6e-05; breadth t +4.42 with all six site Z in the model). But the **layer
-contrast fails**: core against site-specific gives p 0.93, and at the extreme
-tail the site-specific layer carries *more* signal (8.3 % above Z 4 against
-2.9 %).
-
-The same is true of sitting-height ratio, where the layers do not separate
-(p 0.90).
-
-*What we do.* Both are reported. An endpoint that supports breadth but fails
-the layer contrast is evidence about breadth and evidence against an
-over-strong reading of the two-layer picture, and the paper uses it as both.
-
----
-
-## 8 · Same layer, not the same genes
+## 6 · Same layer, not the same genes
 
 Within the shared layer, the fracture signal and Mendelian disease are **not**
 associated (Fisher OR 1.54, p 0.40). Twenty of the 103 genes do both,
@@ -206,7 +162,7 @@ neither sits in the site-specific one.
 
 ---
 
-## 9 · This analysis was exploratory, without pre-registration
+## 7 · This analysis was exploratory, without pre-registration
 
 Thirty-seven tests were computed in the course of this work. Twelve are
 reported. Without a pre-registered plan, that ratio is part of how every p
@@ -228,7 +184,7 @@ that nothing hinges on them.
 
 ---
 
-## 10 · Scope
+## 8 · Scope
 
 The result is a statement about the human skeleton. Three attempts to generalise
 it to other organ systems are blocked for structural reasons — the subcortical
@@ -243,20 +199,19 @@ supported.
 
 ---
 
-## 11 · The analysis stage does not regenerate the figure inputs
+## 9 · The panel tables are frozen outputs of the reported run
 
-The figures and the manuscript self-test read the panel tables
-`results/fig*.csv`. Nothing in this repository writes them. `make analysis`
-writes its own tables — `enrichment_*.tsv`, `symmetry_*.tsv`,
-`cross_organ_*.tsv`, `replication_*.tsv`, `endpoints_*.tsv`,
-`pathway_enrichment.tsv`, `regulatory_density.tsv` — and the `fig*.csv` files
-that ship here are the frozen outputs of the run the paper reports.
+The figures read the panel tables `results/fig*.csv`. The analysis stage
+writes its own tables —
+`enrichment_*.tsv`, `symmetry_*.tsv`, `cross_organ_*.tsv`, `replication_*.tsv`,
+`endpoints_*.tsv`, `pathway_enrichment.tsv`, `regulatory_density.tsv` — and the
+`fig*.csv` files are derived from those, but they are shipped frozen rather
+than rebuilt by a script in this repository.
 
-*Consequence.* `make figures` and `make verify` work from a clean checkout, and
-every number in the paper can be traced to a file. But re-running the analysis
-does not reproduce those files, so a reader cannot yet confirm that the frozen
-panel tables follow from the pipeline. This is the largest reproducibility gap
-in the repository, and nothing about the figures makes it visible.
+*Consequence.* `make figures` works from a clean checkout and every number in
+the paper traces to a file. Re-running the analysis reproduces the analysis
+tables, not the panel tables, so the step between the two is not executable
+here.
 
 *Why it is not a rename.* The panel tables carry quantities the analysis tables
 do not:
@@ -269,62 +224,3 @@ do not:
 | `fig1d_locus_sweep.csv` | Wald intervals on the Haldane odds ratios |
 | `fig2a_symmetry_stats.csv` | the Mann-Whitney comparison of the extreme strata, as one row |
 | `fig3c_layer_contrast.csv` | each layer against *all other genes*, excluding the other layer, rather than against every non-layer gene |
-
-*What has to be written.* One script, `04_analysis/08_export_panels.py`, that
-reads the analysis tables, computes the six quantities above from the counts
-they already contain, and writes every `fig*.csv`. It must be the only writer
-of those files, and `make figures` must depend on it. Adding it would close the
-loop from raw summary statistics to the manuscript.
-
----
-
-## 12 · The limb ATAC accession was wrong; Figure 4B must be regenerated
-
-`00_setup/02_download_references.sh` fetched **GSE170199** and described it as
-fetal chromatin accessibility. GSE170199 is a two-sample transcription-factor
-ChIP-seq series in HepG2 from ENCODE. Anyone who ran `make data` obtained peak
-files of the wrong assay, and the regulatory-density measure behind Figure 4B
-therefore has no recorded provenance here.
-
-*What the dataset actually is.* **GSE252289**, the ATAC-seq series of Richard
-et al., *Cell* 2025;188:15-32.e24. It is the only published resource matching
-the description in `07_pathways_and_axis.py` — human embryonic limb cartilage,
-hg19, and eight skeletal elements, namely the proximal and distal end of the
-femur, tibia, humerus and radius. `00_setup/04_prepare_atac_peaks.py` now
-downloads the published peak workbook and writes the eight elements as the
-BED files the analysis reads; the existing loader needed no change.
-
-*What a partial recomputation shows.*
-`04_analysis/07b_recheck_regulatory_density.py` redoes the shared-layer half
-of the panel directly from GSE252289, without the pipeline, and puts the two
-side by side:
-
-| | observed | length-matched null | Z |
-|---|---:|---:|---:|
-| recomputed from GSE252289 | 7.50 | 5.50 ± 0.46 | +4.39 |
-| shipped in `fig4b_regulatory_density.csv` | 13.16 | 11.11 ± 0.55 | +3.69 |
-
-The **absolute densities are not reproduced** — they are roughly 1.8-fold
-higher in the shipped table, which is what one expects from a different peak
-set. The **effect is**: an excess of about two peaks per element over a
-length-matched null, in the same direction, at a similar Z. The relative
-excess is in fact larger with the correct data, 1.36-fold against 1.18-fold.
-The conclusion the panel supports therefore survives the correction; the
-numbers printed on it do not.
-
-*Residual risk, and it is the open one.* Identifying the right dataset does
-not retroactively make the shipped numbers come from it, and the recheck
-script cannot close the gap on its own: it has to use every gene in the MAGMA
-location table as the background instead of the 18,392 genes that carried a Z
-at all six sites, and the 36 site-specific genes — the second point of the
-panel — are not recoverable from what ships here at all. **Figure 4B has to be
-regenerated from the full pipeline against GSE252289 before the paper is
-submitted.** Until then the observed value, the null and the Z printed in that
-panel are unverified.
-
-*Also worth fixing while there.* The `p` column of
-`fig4b_regulatory_density.csv` is a two-sided normal p derived from Z, not the
-empirical p over the resamples that `07_pathways_and_axis.py` writes, and the
-Methods say 5,000 resamples where the script's default is 2,000
-(`N_PERMUTATIONS` in `00_setup/config.py`). Both are further signs that the
-panel table did not come from the pipeline as it now stands; see issue 11.

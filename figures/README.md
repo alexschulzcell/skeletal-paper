@@ -15,18 +15,8 @@ corresponding table, the figure is wrong, not the table.
 | `figure4.*` | A pathway enrichment of the shared layer; B regulatory density against a length-matched null; C the 103 shared-layer genes across the two clinical ends | `fig4a_*.csv`, `fig4b_*.csv`, `fig4c_*.csv` |
 | `graphical_abstract.*` | one schematic panel; no data | nothing |
 
-## What the files are guaranteed to be
-
-`05_figures/style.py` refuses to write a figure unless all of this holds, so
-these are properties of the files and not intentions:
-
-- the canvas is **exactly 174 mm** wide (5.5 inches square for the graphical
-  abstract) and is never trimmed, so the type keeps the point size the script
-  asked for;
-- no ink falls outside the canvas;
-- no two pieces of text overlap;
-- the TIFF is **RGB without an alpha channel**, LZW-compressed, at 600 dpi
-  (300 dpi for the graphical abstract);
-- only one typeface is embedded, including in the mathematical exponents.
+The TIFFs are 174 mm wide (5.5 inches square for the graphical abstract), RGB
+without an alpha channel, LZW-compressed, at 600 dpi (300 dpi for the graphical
+abstract).
 
 Figures are licensed CC BY 4.0; see `LICENSE-DATA`.

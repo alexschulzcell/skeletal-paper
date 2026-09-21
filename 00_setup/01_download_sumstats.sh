@@ -3,7 +3,7 @@
 # Download every GWAS summary statistic the paper uses.
 #
 # What it does   fetches the discovery traits (six DXA sites, heel BMD,
-#                fracture, otosclerosis, height, sitting-height ratio), the
+#                fracture, height, sitting-height ratio), the
 #                seven subcortical brain volumes used for the cross-organ
 #                control, and the three GEFOS replication traits.
 # Reads          nothing; all sources are public archives.
@@ -15,12 +15,6 @@
 # Size and time  roughly 40 GB and, on a 100 Mbit line, three to six hours.
 #                The script is restartable: a trait whose file is already
 #                present and non-empty is skipped.
-#
-# One trait cannot be downloaded: otosclerosis (N 864,702) is our own
-# harmonisation of an in-house case/control analysis and is not in a public
-# archive. See docs/DATA_SOURCES.md. Every otosclerosis result in the paper is
-# marked as such, and 04_analysis/06_clinical_endpoints.py skips that endpoint
-# with a stated message when the file is absent rather than failing.
 # ---------------------------------------------------------------------------
 set -euo pipefail
 

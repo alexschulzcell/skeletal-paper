@@ -1,6 +1,6 @@
 """Single source of truth for figure style: colors, fonts, sizes, helpers.
 
-Cell Press / AJHG figure requirements encoded here:
+Figure requirements encoded here:
   * column widths 85 mm (1 col), 114 mm (1.5 col), 174 mm (full width)
   * sans-serif face (Arial / Helvetica), minimum 6 pt at final size
   * panel labels: uppercase, bold, upper-left corner
@@ -34,8 +34,8 @@ FIGURES.mkdir(exist_ok=True)
 MM = 1 / 25.4
 W1, W15, W2 = 85 * MM, 114 * MM, 174 * MM  # inches
 
-# Resolution of the submitted raster. Cell Press asks for at least 600 dpi for
-# combination line-and-halftone artwork; these panels are line art throughout.
+# Resolution of the submitted raster: 600 dpi, the usual floor for combination
+# line-and-halftone artwork; these panels are line art throughout.
 DPI_TIF = 600
 
 # ------------------------------------------------------------------- colors
@@ -59,7 +59,7 @@ GEFOS = {"Femoral neck": "#1F6F8B", "Lumbar spine": "#4E9EB8", "Forearm": "#9AA3
 
 # --------------------------------------------------------------------- rc
 BASE = 7.0
-SMALL = 6.0   # Cell Press minimum in-figure font size
+SMALL = 6.0   # minimum in-figure font size
 
 
 def use_paper_style() -> None:
@@ -116,7 +116,7 @@ def use_paper_style() -> None:
 
 # ----------------------------------------------------------------- helpers
 def panel(ax, letter: str, dx: float = -0.16, dy: float = 1.10) -> None:
-    """Bold uppercase panel label in the upper-left corner, as Cell Press asks."""
+    """Bold uppercase panel label in the upper-left corner."""
     ax.text(dx, dy, letter, transform=ax.transAxes, fontsize=BASE + 2,
             fontweight="bold", va="top", ha="left", color=INK,
             clip_on=False, zorder=10)
@@ -523,9 +523,8 @@ def save(fig, name: str, width_mm: float = 174.0) -> None:
 def _flatten_tiff(path: Path, dpi: int) -> None:
     """Drop the alpha channel and stamp the resolution tag.
 
-    Matplotlib writes RGBA. Cell Press, like most production pipelines, rejects
-    TIFFs that carry transparency, so the image is composited onto white and
-    rewritten as RGB.
+    Matplotlib writes RGBA. Most production pipelines reject TIFFs that carry
+    transparency, so the image is composited onto white and rewritten as RGB.
     """
     from PIL import Image
 

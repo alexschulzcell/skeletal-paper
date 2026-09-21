@@ -19,14 +19,6 @@ Writes
     results/truth_panelapp.tsv    gene, confidence, mode of inheritance,
                                   entity type
 
-Numbers in the paper
-    This script feeds the paper. The panel tables it ends up in are
-    the panel tables in results/.
-    No value is repeated here: a number written into a docstring goes
-    stale the first time the analysis is re-run. Every claim the paper
-    makes is declared in 06_manuscript/numbers.json with the table and
-    column it comes from, and `make verify` recomputes all of them.
-
 Runtime
     Seconds.
 

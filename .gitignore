@@ -28,9 +28,6 @@ results/*.tmp
 results/*.part
 figures/*.tmp
 
-# Rendered submission PDFs are build products of 06_manuscript/render_pdf.py.
-06_manuscript/pdf/
-
 # Python
 __pycache__/
 *.py[cod]

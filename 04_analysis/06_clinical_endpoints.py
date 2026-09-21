@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Does the shared layer reach the clinic? Fracture, otosclerosis, heel, size.
+"""Does the shared layer reach the clinic? Fracture, heel BMD, body size.
 
 What it does
     Carries breadth from bone density - a surrogate - to endpoints that matter,
@@ -15,10 +15,6 @@ What it does
     Heel BMD (N 426,824) is a different modality - ultrasound, not DXA - at
     thirteen times the sample size, and serves as an independent validation of
     the density signal itself.
-
-    Otosclerosis (N 864,702) is a disease endpoint in the one bone that does
-    not normally remodel. It is included with its limitation stated: breadth
-    predicts it, but it does not separate the two layers.
 
     Standing height and sitting-height ratio are anthropometric controls.
 
@@ -38,14 +34,10 @@ Writes
     results/endpoints_models.tsv         breadth against peak, and against sites
     results/endpoints_peak_matched.tsv   layer contrast within peak quartiles
 
-Numbers in the paper
-    This script feeds Figures 3B and 3C. The panel tables it ends up in are
+Figures
+    Figures 3B and 3C. Panel tables:
     fig3b_fracture.csv, fig3c_layer_contrast.csv,
     fig3c_conditional.csv.
-    No value is repeated here: a number written into a docstring goes
-    stale the first time the analysis is re-run. Every claim the paper
-    makes is declared in 06_manuscript/numbers.json with the table and
-    column it comes from, and `make verify` recomputes all of them.
 
 Runtime
     Under a minute.
@@ -72,7 +64,7 @@ import config as cfg  # noqa: E402
 
 #: Which endpoints are disease (binary) and which are measurements
 #: (quantitative). The distinction is the whole content of the last section.
-ENDPOINT_KIND = {"frak": "disease", "oto": "disease",
+ENDPOINT_KIND = {"frak": "disease",
                  "heel": "measurement", "height": "measurement",
                  "prop": "measurement"}
 
@@ -99,8 +91,6 @@ def main() -> int:
           f"{', '.join(cfg.ENDPOINTS[e] for e in available) or '(none)'}")
     if missing:
         print(f"  not available      : {', '.join(missing)}")
-        print("    Otosclerosis is our own harmonisation and is not publicly")
-        print("    archived; see docs/DATA_SOURCES.md. The others are downloads.")
     if not available:
         raise SystemExit("No endpoint available; nothing to do.")
 
@@ -138,9 +128,6 @@ def main() -> int:
         rows.append({"endpoint": e, "layer": "contrasts", "n": len(s),
                      "p_core_vs_rest": p_core, "p_specific_vs_rest": p_spec,
                      "p_core_vs_specific": p_layers})
-        if e == "oto" and pd.notna(p_layers) and p_layers > 0.05:
-            print("    Note: otosclerosis does not separate the layers. Breadth")
-            print("    predicts it; the two-layer contrast does not hold here.")
     common.write_result(pd.DataFrame(rows), "endpoints_by_layer.tsv", index=False)
 
     # ---------------------------------------------------------------- 2

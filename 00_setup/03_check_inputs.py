@@ -16,9 +16,6 @@ Reads
 Writes
     results/input_check.txt   the same report, for the record
 
-Numbers in the paper
-    None. This script guards the ones that follow.
-
 Usage
     python 00_setup/03_check_inputs.py [--quick] [--no-checksums]
 """
@@ -46,7 +43,6 @@ SUMSTATS = [
     ("frak.tsv.gz",   True,  "Fracture (GCST006980)"),
     ("height.tsv.gz", True,  "Standing height (Yengo 2022)"),
     ("prop.tsv.gz",   True,  "Sitting-height ratio (GCST90728588)"),
-    ("oto.tsv.gz",    False, "Otosclerosis - in-house, not publicly archived"),
     ("fn2stu.tsv.gz", True,  "GEFOS femoral neck (Zheng 2015)"),
     ("ls2stu.tsv.gz", True,  "GEFOS lumbar spine (Zheng 2015)"),
     ("fa2stu.tsv.gz", True,  "GEFOS forearm (Zheng 2015)"),

@@ -30,14 +30,10 @@ Writes
     results/symmetry_by_breadth.tsv    mean regions and generalised share, 0-6
     results/symmetry_models.tsv        correlations and the OLS coefficients
 
-Numbers in the paper
-    This script feeds Figure 2A. The panel tables it ends up in are
+Figures
+    Figure 2A. Panel tables:
     fig2a_symmetry_law.csv, fig2a_symmetry_stats.csv,
     fig2a_symmetry_regression.csv.
-    No value is repeated here: a number written into a docstring goes
-    stale the first time the analysis is re-run. Every claim the paper
-    makes is declared in 06_manuscript/numbers.json with the table and
-    column it comes from, and `make verify` recomputes all of them.
 
 Runtime
     Seconds.

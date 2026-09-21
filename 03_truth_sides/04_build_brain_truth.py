@@ -29,14 +29,6 @@ Writes
     results/truth_brain.tsv       gene, n_hpo_terms, regions_brain,
                                   has_brain_disease, one column per region
 
-Numbers in the paper
-    This script feeds the paper. The panel tables it ends up in are
-    the panel tables in results/.
-    No value is repeated here: a number written into a docstring goes
-    stale the first time the analysis is re-run. Every claim the paper
-    makes is declared in 06_manuscript/numbers.json with the table and
-    column it comes from, and `make verify` recomputes all of them.
-
 Runtime
     One to two minutes.
 
